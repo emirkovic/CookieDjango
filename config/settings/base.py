@@ -90,6 +90,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    "socialmedia",
     "social.users",
     # Your stuff: custom apps go here
 ]
