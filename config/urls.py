@@ -1,38 +1,20 @@
 # ruff: noqa
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include
-from django.urls import path
+from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
-from drf_spectacular.views import SpectacularAPIView
-from drf_spectacular.views import SpectacularSwaggerView
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 
+# Non-internationalized URLs
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    path(
-        "about/",
-        TemplateView.as_view(template_name="pages/about.html"),
-        name="about",
-    ),
-    # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
-    # User management
-    path("users/", include("social.users.urls", namespace="users")),
-    path("accounts/", include("allauth.urls")),
-    # Your stuff: custom urls includes go here
-    # ...
-    # Media files
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
-]
-
-# API URLS
-urlpatterns += [
-    # API base url
+    # API URLs
     path("api/", include("config.api_router")),
-    # DRF auth token
     path("api/auth-token/", obtain_auth_token),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(
@@ -42,9 +24,21 @@ urlpatterns += [
     ),
 ]
 
+# Internationalized URLs
+urlpatterns += i18n_patterns(
+    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path(
+        "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
+    ),
+    path("users/", include("social.users.urls", namespace="users")),
+    path("accounts/", include("allauth.urls")),
+    # Your stuff: custom urls includes go here
+    # Maybe include the cms.urls if it's part of your project and not just the users app
+    prefix_default_language=False,
+)
+
 if settings.DEBUG:
-    # This allows the error pages to be debugged during development, just visit
-    # these url in browser to see how these error pages look like.
+    # Debug URLs
     urlpatterns += [
         path(
             "400/",
