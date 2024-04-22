@@ -28,11 +28,13 @@ TIME_ZONE = "Europe/Zagreb"
 LANGUAGE_CODE = "en"
 # https://docs.djangoproject.com/en/dev/ref/settings/#languages
 # from django.utils.translation import gettext_lazy as _
-# LANGUAGES = [
-#     ('en', _('English')),
-#     ('fr-fr', _('French')),
-#     ('pt-br', _('Portuguese')),
-# ]
+
+LANGUAGES = [
+    ("en", "English"),
+    #     ('fr-fr', _('French')),
+    #     ('pt-br', _('Portuguese')),
+]
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
@@ -41,6 +43,8 @@ USE_I18N = True
 USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
 LOCALE_PATHS = [str(BASE_DIR / "locale")]
+
+CMS_CONFIRM_VERSION4 = True
 
 # DATABASES
 # ------------------------------------------------------------------------------
@@ -66,6 +70,8 @@ WSGI_APPLICATION = "config.wsgi.application"
 # APPS
 # ------------------------------------------------------------------------------
 DJANGO_APPS = [
+    "djangocms_admin_style",
+    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -73,9 +79,11 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
-    "django.contrib.admin",
     "django.forms",
+    "menus",
+    "treebeard",
 ]
+
 THIRD_PARTY_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
@@ -92,6 +100,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "socialmedia",
     "social.users",
+    "cms",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
