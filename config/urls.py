@@ -26,12 +26,13 @@ urlpatterns = [
 
 # Internationalized URLs
 urlpatterns += i18n_patterns(
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
     path("users/", include("social.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
+    path("", include("cms.urls")),
     # Your stuff: custom urls includes go here
     # Maybe include the cms.urls if it's part of your project and not just the users app
     prefix_default_language=False,
