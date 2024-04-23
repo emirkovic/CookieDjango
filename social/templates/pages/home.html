@@ -1,1 +1,18 @@
 {% extends "base.html" %}
+
+{% load cms_tags sekizai_tags %}
+{% load cms_tags %}
+
+{% render_placeholder mymodel_instance.my_placeholder language 'en' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% page_attribute "page_title" %}</title>
+    {% render_block "css" %}
+  </head>
+  <body>
+    {% cms_toolbar %}
+    {% placeholder "content" %}
+    {% render_block "js" %}
+  </body>
+</html>
