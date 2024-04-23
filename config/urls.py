@@ -32,13 +32,12 @@ urlpatterns += i18n_patterns(
     ),
     path("users/", include("social.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    # Your stuff: custom urls includes go here
-    # Maybe include the cms.urls if it's part of your project and not just the users app
+    path("", include("cms.urls")),
     prefix_default_language=False,
 )
 
+# Debug URLs
 if settings.DEBUG:
-    # Debug URLs
     urlpatterns += [
         path(
             "400/",
