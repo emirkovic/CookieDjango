@@ -12,7 +12,6 @@ from rest_framework.authtoken.views import obtain_auth_token
 # Non-internationalized URLs
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
-    *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
     # API URLs
     path("api/", include("config.api_router")),
     path("api/auth-token/", obtain_auth_token),
@@ -22,6 +21,7 @@ urlpatterns = [
         SpectacularSwaggerView.as_view(url_name="api-schema"),
         name="api-docs",
     ),
+    *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]
 
 # Internationalized URLs
@@ -32,7 +32,6 @@ urlpatterns += i18n_patterns(
     ),
     path("users/", include("social.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    path("", include("cms.urls")),
     # Your stuff: custom urls includes go here
     # Maybe include the cms.urls if it's part of your project and not just the users app
     prefix_default_language=False,
