@@ -1,4 +1,4 @@
-{% load static i18n %}
+{% load static i18n cms_tags sekizai_tags %}
 
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
@@ -11,6 +11,7 @@
         socialmedia
       {% endblock title %}
     </title>
+    {% render_block "css" %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="distributed project" />
     <meta name="author" content="erik" />
@@ -42,6 +43,8 @@
     {% endblock javascript %}
   </head>
   <body class="{% block bodyclass %}{% endblock bodyclass %}">
+    {% cms_toolbar %}
+    {% render_block "js" %}
     {% block body %}
       <div class="mb-1">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -109,6 +112,7 @@
         {% endblock main %}
       </div>
     {% endblock body %}
+    {% placeholder "content" %}
     <!-- /container -->
     {% block modal %}
     {% endblock modal %}

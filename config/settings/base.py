@@ -144,7 +144,7 @@ THUMBNAIL_PROCESSORS = (
 )
 
 CMS_TEMPLATES = [
-    ("home.html", "Home page template"),
+    ("pages/home.html", "Home page template"),
 ]
 
 # MIGRATIONS
