@@ -3,6 +3,8 @@ from django.urls import reverse
 
 from social.users.models import User
 
+# flake8: noqa
+
 
 def test_user_detail(user: User):
     assert (

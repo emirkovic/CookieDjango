@@ -2,6 +2,8 @@ import django.contrib.sites.models
 from django.db import migrations
 from django.db import models
 
+# flake8: noqa
+
 
 class Migration(migrations.Migration):
 

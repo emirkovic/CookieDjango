@@ -1,3 +1,4 @@
+# flake8: noqa
 import contextlib
 
 from django.apps import AppConfig
@@ -10,4 +11,4 @@ class UsersConfig(AppConfig):
 
     def ready(self):
         with contextlib.suppress(ImportError):
-            import social.users.signals  # noqa: F401
+            import social.users.signals  # type: ignore

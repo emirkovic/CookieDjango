@@ -1,5 +1,5 @@
-# ruff: noqa: E501
-from .base import *  # noqa: F403
+# flake8: noqa
+from .base import *
 from .base import DATABASES
 from .base import INSTALLED_APPS
 from .base import SPECTACULAR_SETTINGS
@@ -43,7 +43,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/dev/topics/security/#ssl-https
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-seconds
-# TODO: set this to 60 seconds first and then to 518400 once you prove the former works
+# TODO: set this to 60 seconds then to 518400 once you prove the former works
 SECURE_HSTS_SECONDS = 60
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-include-subdomains
 SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool(
@@ -100,7 +100,10 @@ EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 ANYMAIL = {
     "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
     "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
-    "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
+    "MAILGUN_API_URL": env(
+        "MAILGUN_API_URL",
+        default="https://api.mailgun.net/v3",
+    ),
 }
 
 
@@ -115,7 +118,9 @@ ANYMAIL = {
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "filters": {"require_debug_false": {"()": "django.utils.log.RequireDebugFalse"}},
+    "filters": {
+        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
+    },
     "formatters": {
         "verbose": {
             "format": "%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s",
@@ -150,7 +155,7 @@ LOGGING = {
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
-# Tools that generate code samples can use SERVERS to point to the correct domain
+# Tools that generate code samples
 SPECTACULAR_SETTINGS["SERVERS"] = [
     {"url": "https://socialmedia.com", "description": "Production server"},
 ]

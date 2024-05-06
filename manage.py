@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# ruff: noqa
+# flake8: noqa
 import os
 import sys
 from pathlib import Path
@@ -14,7 +14,7 @@ if __name__ == "__main__":
         # issue is really that Django is missing to avoid masking other
         # exceptions on Python 2.
         try:
-            import django
+            import django  # type: ignore
         except ImportError:
             raise ImportError(
                 "Couldn't import Django. Are you sure it's installed and "
