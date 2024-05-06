@@ -2,5 +2,10 @@
 
 {% block content %}
   <h2>My App</h2>
-  <p>Jebi se</p>
+  <p>Test</p>
 {% endblock content %}
+{% load menu_tags %}
+
+<ul class="nav">
+  {% show_menu 0 100 100 100 %}
+</ul>
