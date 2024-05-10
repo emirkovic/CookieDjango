@@ -1,4 +1,4 @@
-{% load static i18n cms_tags sekizai_tags %}
+{% load static i18n cms_tags sekizai_tags menu_tags placeholder_tags %}
 
 <!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}
@@ -93,6 +93,9 @@
           </div>
         </nav>
       </div>
+      <ul class="nav">
+        {% show_menu 0 100 100 100 %}
+      </ul>
       <div class="container">
         {% if messages %}
           {% for message in messages %}
@@ -108,7 +111,6 @@
         {% block main %}
           {% block content %}
             <p>Use this document as a way to quick start any new project.</p>
-            {% placeholder "content" %}
           {% endblock content %}
         {% endblock main %}
       </div>
